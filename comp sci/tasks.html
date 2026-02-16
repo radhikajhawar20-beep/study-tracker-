@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks - Study Tracker</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Study Tracker</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="tasks.html" class="nav-link active">Tasks</a></li>
+                <li><button class="btn-logout" id="logoutBtn">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="tasks-header">
+            <h1 class="page-title">My Tasks</h1>
+            <button class="btn-add-task" id="addTaskBtn">Add Task</button>
+        </div>
+
+        <div class="tasks-container" id="tasksContainer">
+        </div>
+
+        <div class="empty-state" id="emptyState">
+            <h2>No tasks yet</h2>
+            <p>Click "Add Task" to create your first task</p>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal" id="taskModal">
+        <div class="modal-header">
+            <h2 id="modalTitle">Add New Task</h2>
+            <button class="modal-close" id="modalClose">&times;</button>
+        </div>
+        <form id="taskForm">
+            <input type="hidden" id="taskId">
+            <input type="hidden" id="isSubtask" value="false">
+
+            <div class="form-group">
+                <label for="taskName">Task Name</label>
+                <input type="text" id="taskName" required>
+                <span class="error-text" id="taskNameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="taskDescription">Description</label>
+                <textarea id="taskDescription" rows="3"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="taskDueDate">Due Date</label>
+                    <input type="date" id="taskDueDate">
+                    <span class="error-text" id="taskDateError"></span>
+                </div>
+
+                <div class="form-group" id="priorityGroup">
+                    <label for="taskPriority">Priority</label>
+                    <select id="taskPriority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="taskEstimatedHours">Estimated Hours</label>
+                    <input type="number" id="taskEstimatedHours" min="0" step="0.5" value="1">
+                    <span class="error-text" id="taskHoursError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskHoursLogged">Hours Logged</label>
+                    <input type="number" id="taskHoursLogged" min="0" step="0.1" value="0">
+                    <span class="error-text" id="taskLoggedHoursError"></span>
+                </div>
+            </div>
+
+            <div class="form-group" id="parentTaskGroup" style="display: none;">
+                <label for="parentTask">Parent Task</label>
+                <select id="parentTask">
+                    <option value="">None (Main Task)</option>
+                </select>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+                <button type="submit" class="btn-save" id="saveBtn">Save Task</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script src="tasks.js"></script>
+</body>
+</html>

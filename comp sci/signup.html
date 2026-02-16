@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Study Tracker</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-title">Study Tracker</h1>
+                <p class="auth-subtitle">Create your account</p>
+            </div>
+            
+            <form id="signupForm" class="auth-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Enter your name"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter your password (min 6 characters)"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        placeholder="Confirm your password"
+                        required
+                    >
+                </div>
+                
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+                
+                <button type="submit" class="btn-auth">Sign Up</button>
+            </form>
+            
+            <p class="auth-link">
+                Already have an account? <a href="login.html">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signupForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+     
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            successMessage.classList.remove('show');
+            
+          
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 5000);
+        }
+
+     
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.classList.add('show');
+            errorMessage.classList.remove('show');
+        }
+
+       
+        function isValidEmail(email) {
+            
+            return email.includes('@') && email.includes('.');
+        }
+
+       
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const confirmPassword = confirmPasswordInput.value.trim();
+            
+           
+            if (!name || !email || !password || !confirmPassword) {
+                showError('Please fill in all fields');
+                return;
+            }
+            
+           
+            if (!isValidEmail(email)) {
+                showError('Invalid email format. Email must contain @ and .');
+                return;
+            }
+            
+           
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters long');
+                return;
+            }
+            
+        
+            if (password !== confirmPassword) {
+                showError('Passwords do not match');
+                return;
+            }
+            
+           
+            const users = JSON.parse(localStorage.getItem('studyTrackerUsers')) || [];
+            
+          
+            const existingUser = users.find(u => u.email === email);
+            if (existingUser) {
+                showError('An account with this email already exists');
+                return;
+            }
+            
+           
+            const newUser = {
+                name: name,
+                email: email,
+                password: password,
+                createdAt: new Date().toISOString()
+            };
+            
+           
+            users.push(newUser);
+            
+          
+            localStorage.setItem('studyTrackerUsers', JSON.stringify(users));
+            
+           
+            showSuccess('Account created successfully! Redirecting to login...');
+            
+          
+            signupForm.reset();
+            
+          
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        });
+
+       
+        const inputs = [nameInput, emailInput, passwordInput, confirmPasswordInput];
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                errorMessage.classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>
+

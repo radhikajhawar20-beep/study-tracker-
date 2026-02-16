@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Study Tracker</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Study Tracker</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+                <li><a href="tasks.html" class="nav-link">Tasks</a></li>
+                <li><button class="btn-logout" id="logoutBtn">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="welcome-section">
+            <h1 class="welcome-title">Welcome back, <span id="userName">User</span>!</h1>
+            <p class="welcome-subtitle">Here's your study progress for today</p>
+        </section>
+
+        <section class="daily-goals">
+            <h2 class="section-title">Daily Goals</h2>
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-header">
+                        <h3 class="goal-title">Daily Tasks</h3>
+                        <button class="edit-goal-btn" id="editTasksGoal">✏️</button>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="progress-text">
+                            <span class="progress-current" id="tasksCompleted">0</span>
+                            <span class="progress-separator">/</span>
+                            <span class="progress-goal" id="tasksGoal">3</span>
+                            <span class="progress-unit">tasks</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="tasksProgress"></div>
+                        </div>
+                        <div class="progress-percentage" id="tasksPercentage">0%</div>
+                    </div>
+                </div>
+
+                <div class="goal-card">
+                    <div class="goal-header">
+                        <h3 class="goal-title">Study Hours</h3>
+                        <button class="edit-goal-btn" id="editHoursGoal">✏️</button>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="progress-text">
+                            <span class="progress-current" id="hoursCompleted">0</span>
+                            <span class="progress-separator">/</span>
+                            <span class="progress-goal" id="hoursGoal">5</span>
+                            <span class="progress-unit">hours</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="hoursProgress"></div>
+                        </div>
+                        <div class="progress-percentage" id="hoursPercentage">0%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="weekly-stats">
+            <h2 class="section-title">Weekly Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="completedThisWeek">0</div>
+                    <div class="stat-label">Completed This Week</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="pendingTasks">0</div>
+                    <div class="stat-label">Pending Tasks</div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <!-- Goal Edit Modal -->
+    <div class="modal-overlay" id="goalModalOverlay"></div>
+    <div class="modal" id="goalModal">
+        <div class="modal-header">
+            <h2 id="goalModalTitle">Edit Daily Goal</h2>
+            <button class="modal-close" id="goalModalClose">&times;</button>
+        </div>
+        <form id="goalForm">
+            <div class="form-group">
+                <label for="goalValue" id="goalLabel">Goal Value</label>
+                <input type="number" id="goalValue" min="1" required>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="goalCancelBtn">Cancel</button>
+                <button type="submit" class="btn-save">Save Goal</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="dashboard-working.js"></script>
+</body>
+</html>

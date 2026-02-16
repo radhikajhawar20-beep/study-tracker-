@@ -1,0 +1,14 @@
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 20px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+}
+

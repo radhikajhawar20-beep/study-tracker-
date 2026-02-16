@@ -1,0 +1,610 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: 'Georgia', serif;
+    font-size: 1.8rem;
+    color: #FF69B4;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #FF69B4;
+}
+
+.nav-link.active {
+    color: #FF69B4;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #FF69B4;
+}
+
+.btn-logout {
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #FF1493;
+    transform: translateY(-2px);
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem 2rem;
+}
+
+.welcome-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.daily-goals {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid #ddd;
+}
+
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.goal-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.goal-card:hover {
+    transform: translateY(-5px);
+    border-color: #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.goal-header {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-goal-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-goal-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.goal-title {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.goal-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.progress-text {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    font-size: 1.5rem;
+}
+
+.progress-current {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #FF69B4;
+}
+
+.progress-separator {
+    color: #999;
+}
+
+.progress-goal {
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.progress-unit {
+    font-size: 1rem;
+    color: #999;
+    margin-left: 0.3rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #FF69B4;
+    border-radius: 6px;
+    transition: width 0.3s ease;
+}
+
+.progress-percentage {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.quick-stats {
+    margin-bottom: 3rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    color: #FF69B4;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #666;
+}
+
+.quick-actions {
+    margin-bottom: 3rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.action-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    border-color: #FF69B4;
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+}
+
+.action-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.action-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 2000;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 12px;
+    padding: 0;
+    width: 90%;
+    max-width: 400px;
+    display: none;
+    z-index: 2001;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0.2rem;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #FF69B4;
+    box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
+}
+
+.modal form {
+    padding: 1.5rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.btn-cancel {
+    background-color: #f5f5f5;
+    color: #666;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-save {
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+    background-color: #FF1493;
+}
+
+/* Authentication Pages */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+    padding: 2rem;
+}
+
+.auth-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #e0e0e0;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    color: #FF69B4;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.auth-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.auth-form {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form .form-group:last-of-type {
+    margin-bottom: 1rem;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #FF69B4;
+    box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
+}
+
+.btn-auth {
+    width: 100%;
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.btn-auth:hover {
+    background-color: #FF1493;
+    transform: translateY(-2px);
+}
+
+.error-message, .success-message {
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.error-message {
+    background-color: #fee;
+    color: #c33;
+    border: 1px solid #fcc;
+}
+
+.success-message {
+    background-color: #efe;
+    color: #363;
+    border: 1px solid #cfc;
+}
+
+.error-message.show, .success-message.show {
+    display: block;
+}
+
+.auth-link {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.auth-link a {
+    color: #FF69B4;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background-color: #ffffff;
+        width: 100%;
+        padding: 2rem;
+        transition: left 0.3s ease;
+        gap: 1.5rem;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .welcome-text {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .goals-grid,
+    .stats-grid,
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
